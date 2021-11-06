@@ -11,14 +11,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({Key? key}) : super(key: key);
-
+  EditProfileScreen({Key? key}) : super(key: key);
+  String? name, email, phoneNumber, address;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AuthViewModel>(
       init: Get.find<AuthViewModel>(),
       builder: (controller) {
-        controller.getUserDataInFields();
+        nameController.text = controller.userDataModel!.name!;
+        emailController.text = controller.userDataModel!.email!;
+        phoneNumberController.text = controller.userDataModel!.phoneNumber!;
+        addressController.text = controller.userDataModel!.address!;
         return Scaffold(
           appBar: AppBar(
             titleSpacing: 0,
@@ -78,49 +85,49 @@ class EditProfileScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   buildCustomTextField(
                     labelText: 'User Name',
-                    controller: controller.nameUpdateCon,
+                    controller: nameController,
                     type: TextInputType.name,
                     onChanged: (value) {
-                      controller.nameUpdate = value!;
+                      name = value!;
                     },
                     onSaved: (value) {
-                      controller.nameUpdate = value!;
+                      name = value!;
                     },
                   ),
                   const SizedBox(height: 10),
                   buildCustomTextField(
                     labelText: 'E-mail',
-                    controller: controller.emailUpdateCon,
+                    controller: emailController,
                     type: TextInputType.emailAddress,
                     onChanged: (value) {
-                      controller.emailUpdate = value!;
+                      email = value!;
                     },
                     onSaved: (value) {
-                      controller.emailUpdate = value!;
+                      email = value!;
                     },
                   ),
                   const SizedBox(height: 10),
                   buildCustomTextField(
                     labelText: 'Phone Number',
-                    controller: controller.phoneNumberUpdateCon,
+                    controller: phoneNumberController,
                     type: TextInputType.phone,
                     onChanged: (value) {
-                      controller.phoneNumberUpdate = value!;
+                      phoneNumber = value!;
                     },
                     onSaved: (value) {
-                      controller.phoneNumberUpdate = value!;
+                      phoneNumber = value!;
                     },
                   ),
                   const SizedBox(height: 10),
                   buildCustomTextField(
                     labelText: 'Address',
-                    controller: controller.addressUpdateCon,
+                    controller: addressController,
                     type: TextInputType.text,
                     onChanged: (value) {
-                      controller.addressUpdate = value!;
+                      address = value!;
                     },
                     onSaved: (value) {
-                      controller.addressUpdate = value!;
+                      address = value!;
                     },
                   ),
                   const SizedBox(height: 30),
@@ -129,7 +136,12 @@ class EditProfileScreen extends StatelessWidget {
                       : buildCustomButton(
                           text: 'update',
                           width: MediaQuery.of(context).size.width,
-                          onPressed: () => controller.updateUserData(),
+                          onPressed: () => controller.updateUserData(
+                            name: nameController.text,
+                            email: emailController.text,
+                            phoneNumber: phoneNumberController.text,
+                            address: addressController.text,
+                          ),
                         ),
                 ],
               ),

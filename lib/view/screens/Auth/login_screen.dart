@@ -1,5 +1,6 @@
 import 'package:ecommerce/constants/constants.dart';
 import 'package:ecommerce/styles/colors/colors.dart';
+import 'package:ecommerce/view/widgets/build_circular_loading.dart';
 import 'package:ecommerce/view/widgets/build_custom_button.dart';
 import 'package:ecommerce/view/widgets/build_custom_button_social.dart';
 import 'package:ecommerce/view/widgets/build_custom_text.dart';

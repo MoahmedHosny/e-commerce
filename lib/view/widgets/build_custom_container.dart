@@ -12,7 +12,7 @@ class CustomContainer extends StatelessWidget {
       width: MediaQuery.of(context).size.height * 0.066,
       padding: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
-        color: black,
+        color: green.withOpacity(0.85),
         borderRadius: BorderRadius.circular(2),
       ),
       child: buildCustomText(

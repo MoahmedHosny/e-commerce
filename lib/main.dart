@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: Register, page: () => RegisterScreen()),
         // GetPage(name: Controller, page: () => const ControllerScreen()),
         GetPage(name: HomeLayout, page: () => HomeLayoutScreen()),
-        GetPage(name: EditProfile, page: () => const EditProfileScreen()),
+        GetPage(name: EditProfile, page: () => EditProfileScreen()),
       ],
     );
   }

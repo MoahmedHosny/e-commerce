@@ -1,21 +1,27 @@
+import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class AvailableColors extends StatelessWidget {
-  AvailableColors({Key? key, this.colors}) : super(key: key);
-  List<Color>? colors;
+  const AvailableColors({Key? key, this.colors}) : super(key: key);
+  final List<dynamic>? colors;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 24,
+      height: 30,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return CircleAvatar(
-            radius: 12,
-            backgroundColor: colors![index],
+            radius: 16,
+            backgroundColor: black,
+            child: CircleAvatar(
+              radius: 15,
+              backgroundColor: HexColor('${colors![index]}'),
+            ),
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(width: 10),
+        separatorBuilder: (context, index) => const SizedBox(width: 4),
         itemCount: colors!.length,
       ),
     );

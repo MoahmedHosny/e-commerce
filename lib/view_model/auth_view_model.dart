@@ -51,12 +51,7 @@ class AuthViewModel extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   late String name, email, password, phoneNumber, address;
-
-  late String nameUpdate, emailUpdate, phoneNumberUpdate, addressUpdate;
-  TextEditingController nameUpdateCon = TextEditingController();
-  TextEditingController emailUpdateCon = TextEditingController();
-  TextEditingController phoneNumberUpdateCon = TextEditingController();
-  TextEditingController addressUpdateCon = TextEditingController();
+  ValueNotifier<bool> isLoading = ValueNotifier(false);
 
   /// Method User Login With Email And Password
   void userLoginWithEmail() async {
@@ -158,7 +153,7 @@ class AuthViewModel extends GetxController {
       email: email,
       phoneNumber: phoneNumber,
       address: address,
-      image: defaultImage,
+      image: DEFAULTIMAGE,
     );
     await FirebaseFirestore.instance
         .collection('Users')
@@ -167,7 +162,6 @@ class AuthViewModel extends GetxController {
   }
 
   /// Method Get User Data From FireStore
-  ValueNotifier<bool> isLoading = ValueNotifier(false);
   UserDataModel? userDataModel;
   void getUserData() async {
     isLoading.value = true;
@@ -198,14 +192,8 @@ class AuthViewModel extends GetxController {
     );
   }
 
-  /// Text Fields
-  void getUserDataInFields() async {
-    nameUpdateCon.text = userDataModel!.name!;
-    emailUpdateCon.text = userDataModel!.email!;
-    phoneNumberUpdateCon.text = userDataModel!.phoneNumber!;
-    addressUpdateCon.text = userDataModel!.address!;
-    update();
-  }
+  /// Text Editing Controller
+  void getTextEditingController() async {}
 
   /// Image Picker
   File? imageProfile;
@@ -222,15 +210,20 @@ class AuthViewModel extends GetxController {
   }
 
   /// Update User Data
-  void updateUserData() async {
+  void updateUserData({
+    required String? name,
+    required String? email,
+    required String? phoneNumber,
+    required String? address,
+  }) async {
     if (imageProfile == null) {
       isLoading.value = true;
       update();
       UserDataModel userModel = UserDataModel(
-        name: nameUpdateCon.text,
-        email: emailUpdateCon.text,
-        phoneNumber: phoneNumberUpdateCon.text,
-        address: addressUpdateCon.text,
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        address: address,
         image: userDataModel!.image,
         uid: userDataModel!.uid,
       );
@@ -258,10 +251,10 @@ class AuthViewModel extends GetxController {
           .then((val) {
         val.ref.getDownloadURL().then((String? imageUrl) {
           UserDataModel userModel = UserDataModel(
-            name: nameUpdateCon.text,
-            email: emailUpdateCon.text,
-            phoneNumber: phoneNumberUpdateCon.text,
-            address: addressUpdateCon.text,
+            name: name,
+            email: email,
+            phoneNumber: phoneNumber,
+            address: address,
             image: imageUrl,
             uid: userDataModel!.uid,
           );

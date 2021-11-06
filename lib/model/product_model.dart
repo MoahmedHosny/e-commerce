@@ -6,27 +6,30 @@ class ProductModel {
   String? image;
   String? title;
   String? price;
-  Color? color;
+  // Color? color;
   String? description;
   List<dynamic>? sizes;
+  List<dynamic>? colors;
 
   ProductModel({
     this.productId,
     this.image,
     this.title,
     this.price,
-    this.color,
+    // this.color,
     this.description,
     this.sizes,
+    this.colors,
   });
   ProductModel.formJson(Map<String, dynamic> json) {
     productId = json['productId'];
     image = json['image'];
     title = json['title'];
     price = json['price'];
-    color = HexColor.fromHex(json['color']);
+    //  color = HexColor.fromHex(json['color']);
     description = json['description'];
     sizes = json['sizes'];
+    colors = json['colors'];
   }
   Map<String, dynamic> toMap() {
     return {
@@ -34,9 +37,10 @@ class ProductModel {
       'image': image,
       'title': title,
       'price': price,
-      'color': color,
+      //  'color': color,
       'description': description,
       'sizes': sizes,
+      'colors': colors,
     };
   }
 }

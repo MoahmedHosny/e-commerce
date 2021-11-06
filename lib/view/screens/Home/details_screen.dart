@@ -3,6 +3,7 @@ import 'package:ecommerce/model/cart_model.dart';
 import 'package:ecommerce/model/favorite_model.dart';
 import 'package:ecommerce/model/product_model.dart';
 import 'package:ecommerce/styles/colors/colors.dart';
+import 'package:ecommerce/view/widgets/build_available_colors.dart';
 import 'package:ecommerce/view/widgets/build_available_sizes.dart';
 import 'package:ecommerce/view/widgets/build_custom_container.dart';
 import 'package:ecommerce/view/widgets/build_category_circular.dart';
@@ -107,14 +108,7 @@ class DetailsScreen extends StatelessWidget {
                         const SizedBox(height: 15),
                         const CustomContainer(text: 'Color'),
                         const SizedBox(height: 10),
-                        CircleAvatar(
-                          radius: 16,
-                          backgroundColor: grey.withOpacity(0.4),
-                          child: CircleAvatar(
-                            radius: 14,
-                            backgroundColor: productModel.color,
-                          ),
-                        ),
+                        AvailableColors(colors: productModel.colors),
                         const SizedBox(height: 20),
                         buildCustomText(
                             text: 'Details', fontSize: 20, letterSpacing: 1),

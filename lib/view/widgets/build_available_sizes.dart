@@ -1,6 +1,7 @@
 import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AvailableSizes extends StatelessWidget {
   const AvailableSizes({Key? key, this.sizes}) : super(key: key);
@@ -16,17 +17,18 @@ class AvailableSizes extends StatelessWidget {
           return Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(
-              color: btn.withOpacity(0.45),
+              color: yellow.withOpacity(0.65),
               borderRadius: BorderRadius.circular(2),
             ),
-            child: buildCustomText(
-              text: sizes![index].toString(),
-              fontSize: 15.22,
-              alignment: Alignment.center,
+            child: Center(
+              child: Text(
+                sizes![index].toString(),
+                style: GoogleFonts.merriweatherSans(),
+              ),
             ),
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(width: 10),
+        separatorBuilder: (context, index) => const SizedBox(width: 6),
         itemCount: sizes!.length,
       ),
     );
