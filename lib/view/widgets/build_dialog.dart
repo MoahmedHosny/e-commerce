@@ -21,17 +21,14 @@ void buildDialog(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
-            titlePadding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            titlePadding: const EdgeInsets.all(10),
             content: buildCustomText(
               text: text,
               fontSize: 16,
               color: grey,
             ),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            contentPadding: const EdgeInsets.all(10),
             actions: actions,
-            actionsPadding: const EdgeInsets.symmetric(vertical: 4),
           ),
         ],
       );

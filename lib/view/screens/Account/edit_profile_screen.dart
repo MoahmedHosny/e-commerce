@@ -64,10 +64,10 @@ class EditProfileScreen extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     children: [
                       CircleAvatar(
-                        radius: 70,
+                        radius: 80,
                         backgroundColor: green.withOpacity(0.2),
                         child: CircleAvatar(
-                          radius: 66,
+                          radius: 76,
                           backgroundColor: white,
                           backgroundImage: controller.imageProfile == null
                               ? NetworkImage(controller.userDataModel!.image
@@ -76,7 +76,7 @@ class EditProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 4, bottom: 4),
+                        padding: const EdgeInsets.only(right: 4, bottom: 8),
                         child: CircleAvatar(
                           backgroundColor: btn.withOpacity(0.45),
                           child: IconButton(
