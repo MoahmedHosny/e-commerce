@@ -46,7 +46,7 @@ class AccountScreen extends StatelessWidget {
                           children: [
                             buildCustomText(
                               text: controller.userDataModel!.name.toString(),
-                              fontSize: 17,
+                              fontSize: 16.5,
                               fontWeight: FontWeight.bold,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -58,8 +58,8 @@ class AccountScreen extends StatelessWidget {
                                       null.toString()
                                   ? 'There is no email ...'
                                   : controller.userDataModel!.email.toString(),
-                              color: grey,
-                              fontSize: 16,
+                              color: grey.withOpacity(0.8),
+                              fontSize: 15.5,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
