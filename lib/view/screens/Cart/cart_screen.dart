@@ -17,7 +17,7 @@ class CartScreen extends StatelessWidget {
           if (controller.cartsList!.isEmpty) {
             return Center(
               child: Image.asset(
-                'assets/images/empty_cart.jpg',
+                'assets/images/cart_empty.jpg',
                 height: MediaQuery.of(context).size.height * 0.26,
                 width: MediaQuery.of(context).size.width,
               ),

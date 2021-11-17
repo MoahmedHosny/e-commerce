@@ -14,7 +14,7 @@ class FavoriteScreen extends StatelessWidget {
         if (controller.favList!.isEmpty) {
           return Center(
             child: Image.asset(
-              'assets/images/empty_fav.jpg',
+              'assets/images/fav_empty.jpg',
               height: MediaQuery.of(context).size.height * 0.26,
               width: MediaQuery.of(context).size.width,
             ),
