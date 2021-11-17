@@ -1,7 +1,6 @@
 import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void buildDialog(
   BuildContext context, {
@@ -17,7 +16,11 @@ void buildDialog(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AlertDialog(
-            title: buildCustomText(text: 'Delete Product'),
+            title: buildCustomText(
+              text: 'Delete Product',
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
             titlePadding:
                 const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             content: buildCustomText(
@@ -28,6 +31,7 @@ void buildDialog(
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             actions: actions,
+            actionsPadding: const EdgeInsets.symmetric(vertical: 4),
           ),
         ],
       );

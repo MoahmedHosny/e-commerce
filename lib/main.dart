@@ -43,15 +43,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: Login, page: () => LoginScreen()),
         GetPage(name: Register, page: () => RegisterScreen()),
         // GetPage(name: Controller, page: () => const ControllerScreen()),
-
-        GetPage(name: HomeLayout, page: () => const HomeLayoutScreen()),
-        GetPage(name: EditProfile, page: () => EditProfileScreen()),
-
         GetPage(name: HomeLayout, page: () => const HomeLayoutScreen()),
         GetPage(name: EditProfile, page: () => EditProfileScreen()),
         GetPage(name: AllProducts, page: () => const AllProductsScreen()),
         GetPage(name: CheckOut, page: () => const CheckOutScreen()),
-
       ],
     );
   }
