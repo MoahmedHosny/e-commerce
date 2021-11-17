@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 const Login = '/Login';
 const Register = '/Register';
 // const Controller = '/Controller';

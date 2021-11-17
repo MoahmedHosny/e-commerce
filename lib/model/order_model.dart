@@ -25,6 +25,7 @@ class OrderModel {
     time = json['time'];
     orderId = json['orderId'];
     isTotalPrice = json['isTotalPrice'];
+    // ignore: avoid_function_literals_in_foreach_calls
     products!.forEach((element) {
       json['products'].add(element.title);
     });
