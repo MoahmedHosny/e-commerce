@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,12 +13,11 @@ void buildSnackBar({
     messageText: Text(
       msg,
       style: GoogleFonts.lato(
-        fontSize: 14,
         fontWeight: FontWeight.bold,
-        letterSpacing: 0.2,
+        color: black.withOpacity(0.8),
       ),
     ),
-    borderRadius: 4.0,
+    borderRadius: 4,
     duration: const Duration(seconds: 2),
     //  snackPosition: SnackPosition.BOTTOM,
   );

@@ -8,19 +8,19 @@ Widget buildCustomTextAndButton(
   required String text,
   required String price,
   required String textButton,
-  required VoidCallback? onPressed,
+  required VoidCallback onPressed,
 }) {
   var size = MediaQuery.of(context).size;
   return Container(
-    padding: const EdgeInsets.only(top: 4, left: 10, right: 10),
-    height: size.height * 0.066,
+    padding: const EdgeInsets.only(top: 6, left: 10, right: 10),
+    height: size.height * 0.064,
     width: size.width,
     decoration: BoxDecoration(
       color: white,
       boxShadow: [
         BoxShadow(
-          color: lightGrey.withOpacity(0.8),
-          blurRadius: 16,
+          color: grey.withOpacity(0.6),
+          blurRadius: 20,
           offset: const Offset(0, 10),
         ),
       ],
@@ -34,13 +34,14 @@ Widget buildCustomTextAndButton(
               children: [
                 buildCustomText(
                   text: text.toUpperCase(),
-                  fontSize: 16,
-                  color: black.withOpacity(0.3),
+                  fontWeight: FontWeight.bold,
+                  color: grey.withOpacity(0.6),
                 ),
+                const SizedBox(height: 6),
                 buildCustomText(
                   text: '\$ $price',
-                  fontSize: 16.5,
-                  letterSpacing: 0.2,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                   color: green,
                 ),
               ],
@@ -49,7 +50,7 @@ Widget buildCustomTextAndButton(
             buildCustomButton(
               text: textButton,
               width: size.width * 0.40,
-              onPressed: onPressed!,
+              onPressed: onPressed,
             )
           ],
         ),

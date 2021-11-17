@@ -10,6 +10,12 @@ import 'package:flutter/material.dart';
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  String? name, email, password, phoneNumber, address;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -49,17 +55,17 @@ class RegisterScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     buildCustomTextField(
                       hintText: 'Name',
-                      controller: controller.nameController,
+                      controller: nameController,
                       type: TextInputType.name,
                       onChanged: (value) {
-                        controller.name = value!;
+                        name = value!;
                       },
                       onSaved: (value) {
-                        controller.name = value!;
+                        name = value!;
                       },
                       validator: (value) {
                         if (value == null || value == '' || value.isEmpty) {
-                          return 'Please Enter Your Name';
+                          return 'Please enter your name';
                         } else {
                           return null;
                         }
@@ -68,19 +74,19 @@ class RegisterScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     buildCustomTextField(
                       hintText: 'E-mail',
-                      controller: controller.emailController,
+                      controller: emailController,
                       type: TextInputType.emailAddress,
                       onChanged: (value) {
-                        controller.email = value!;
+                        email = value!;
                       },
                       onSaved: (value) {
-                        controller.email = value!;
+                        email = value!;
                       },
                       validator: (value) {
                         if (value == null || value == '' || value.isEmpty) {
-                          return 'Please Enter Your E-mail';
+                          return 'Please enter your e-mail';
                         } else if (!value.contains('@')) {
-                          return 'Do Use The @ Char.';
+                          return 'Do use the @ char.';
                         } else {
                           return null;
                         }
@@ -89,20 +95,20 @@ class RegisterScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     buildCustomTextField(
                       hintText: 'Password',
-                      controller: controller.passwordController,
+                      controller: passwordController,
                       type: TextInputType.visiblePassword,
                       isPassword: true,
                       onChanged: (value) {
-                        controller.password = value!;
+                        password = value!;
                       },
                       onSaved: (value) {
-                        controller.password = value!;
+                        password = value!;
                       },
                       validator: (value) {
                         if (value == null || value == '' || value.isEmpty) {
-                          return 'Please Enter Your Password';
+                          return 'Please enter your password';
                         } else if (value.length < 8) {
-                          return 'Please Enter a Password 8+ Char.';
+                          return 'Please enter a password 8+ char.';
                         } else {
                           return null;
                         }
@@ -111,19 +117,19 @@ class RegisterScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     buildCustomTextField(
                       hintText: 'Phone',
-                      controller: controller.phoneController,
+                      controller: phoneController,
                       type: TextInputType.number,
                       onChanged: (value) {
-                        controller.phoneNumber = value!;
+                        phoneNumber = value!;
                       },
                       onSaved: (value) {
-                        controller.phoneNumber = value!;
+                        phoneNumber = value!;
                       },
                       validator: (value) {
                         if (value == null || value == '' || value.isEmpty) {
-                          return 'Please Enter Your Password';
+                          return 'Please enter your password';
                         } else if (value.length < 11) {
-                          return 'Please Enter a Password 11+ Char.';
+                          return 'Please enter a password 11+ char.';
                         } else {
                           return null;
                         }
@@ -132,17 +138,17 @@ class RegisterScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     buildCustomTextField(
                       hintText: 'Address',
-                      controller: controller.addressController,
+                      controller: addressController,
                       type: TextInputType.text,
                       onChanged: (value) {
-                        controller.address = value!;
+                        address = value!;
                       },
                       onSaved: (value) {
-                        controller.address = value!;
+                        address = value!;
                       },
                       validator: (value) {
                         if (value == null || value == '' || value.isEmpty) {
-                          return 'Please Enter Your Address';
+                          return 'Please enter your address';
                         } else {
                           return null;
                         }
@@ -156,7 +162,13 @@ class RegisterScreen extends StatelessWidget {
                         if (!formKey.currentState!.validate()) {
                         } else {
                           (formKey.currentState!.save());
-                          controller.createUserWithEmailAndPassword();
+                          controller.createUserWithEmailAndPassword(
+                            name: nameController.text,
+                            email: emailController.text,
+                            password: passwordController.text,
+                            phoneNumber: phoneController.text,
+                            address: addressController.text,
+                          );
                         }
                       },
                     ),

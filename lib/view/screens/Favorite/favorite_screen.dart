@@ -1,4 +1,3 @@
-import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:ecommerce/view/widgets/build_favorite_item.dart';
 import 'package:ecommerce/view_model/favorite_view_model.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +12,12 @@ class FavoriteScreen extends StatelessWidget {
       init: FavoriteViewModel(),
       builder: (controller) {
         if (controller.favList!.isEmpty) {
-          return buildCustomText(
-            text: 'Favorite Empty . .',
-            fontSize: 30,
-            alignment: Alignment.center,
+          return Center(
+            child: Image.asset(
+              'assets/images/empty_fav.jpg',
+              height: MediaQuery.of(context).size.height * 0.26,
+              width: MediaQuery.of(context).size.width,
+            ),
           );
         } else {
           return ListView.separated(

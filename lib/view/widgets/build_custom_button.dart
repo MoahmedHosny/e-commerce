@@ -8,20 +8,35 @@ Widget buildCustomButton({
   required double width,
   required VoidCallback onPressed,
   double? height,
+  Color? backColor,
+  Color? borderColor,
+  Color? textColor,
+  Alignment? alignment,
 }) {
-  return MaterialButton(
-    elevation: 5,
-    highlightElevation: 5,
-    onPressed: onPressed,
-    color: green,
+  return Container(
     height: height ?? 40,
-    minWidth: width,
-    child: buildCustomText(
-      text: text.toUpperCase(),
-      alignment: Alignment.center,
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-      color: white,
+    alignment: alignment,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(2),
+      border: Border.all(
+        color: borderColor ?? transparent,
+        width: 0.8,
+      ),
+    ),
+    child: MaterialButton(
+      elevation: 0,
+      highlightElevation: 0,
+      onPressed: onPressed,
+      color: backColor ?? green,
+      height: height ?? 40,
+      minWidth: width,
+      child: buildCustomText(
+        text: text.toUpperCase(),
+        alignment: Alignment.center,
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: textColor ?? white,
+      ),
     ),
   );
 }

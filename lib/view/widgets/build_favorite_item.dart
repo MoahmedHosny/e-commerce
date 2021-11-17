@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/styles/colors/colors.dart';
-import 'package:ecommerce/view/widgets/build_category_circular.dart';
 import 'package:ecommerce/view/widgets/build_circular_loading.dart';
 import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:ecommerce/view/widgets/build_dialog.dart';
@@ -13,48 +12,31 @@ import 'package:get/get.dart';
 Widget buildFavoriteItem(BuildContext context, {required int index}) {
   var size = MediaQuery.of(context).size;
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10),
+    padding: const EdgeInsets.symmetric(horizontal: 15),
     child: GetBuilder<FavoriteViewModel>(
       init: FavoriteViewModel(),
       builder: (controller) => SizedBox(
         height: size.height * 0.132,
         child: Row(
           children: [
-            Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                SizedBox(
-                  height: size.height * 0.132,
-                  width: size.width * 0.295,
-                  child: CachedNetworkImage(
-                    imageUrl: '${controller.favList![index].image}',
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        color: btn.withOpacity(0.45),
-                        borderRadius: BorderRadius.circular(4),
-                        image: DecorationImage(
-                          image: imageProvider,
-                        ),
-                      ),
-                    ),
-                    placeholder: (context, url) =>
-                        buildCircularLoading(strokeWidth: 2.0),
-                    errorWidget: (context, url, error) => buildIcon(),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 4, bottom: 4),
-                  child: buildCategoryCircular(
-                    height: 35,
-                    width: 35,
-                    child: Image.asset(
-                      'assets/images/icons/wishlist.png',
-                      scale: 2.0,
-                      color: yellow,
+            SizedBox(
+              height: size.height * 0.132,
+              width: size.width * 0.295,
+              child: CachedNetworkImage(
+                imageUrl: '${controller.favList![index].image}',
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    color: btn.withOpacity(0.45),
+                    borderRadius: BorderRadius.circular(4),
+                    image: DecorationImage(
+                      image: imageProvider,
                     ),
                   ),
                 ),
-              ],
+                placeholder: (context, url) =>
+                    buildCircularLoading(strokeWidth: 2.0),
+                errorWidget: (context, url, error) => buildIcon(),
+              ),
             ),
             const SizedBox(width: 15),
             Expanded(
@@ -63,15 +45,16 @@ Widget buildFavoriteItem(BuildContext context, {required int index}) {
                 children: [
                   buildCustomText(
                     text: controller.favList![index].title.toString(),
-                    fontSize: 17.5,
+                    fontSize: 17,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  const SizedBox(height: 8),
                   buildCustomText(
                     text: '\$ ${controller.favList![index].price}',
-                    fontSize: 16.5,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
                     color: green,
-                    letterSpacing: 0.2,
                   ),
                 ],
               ),

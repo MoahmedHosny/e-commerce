@@ -5,7 +5,6 @@ import 'package:ecommerce/view/widgets/build_custom_button.dart';
 import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:ecommerce/view/widgets/build_custom_text_field.dart';
 import 'package:ecommerce/view/widgets/build_icon.dart';
-import 'package:ecommerce/view/widgets/build_icon_plus_and_minus.dart';
 import 'package:ecommerce/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,9 +40,14 @@ class EditProfileScreen extends StatelessWidget {
             title: Row(
               children: [
                 buildCustomText(
-                    text: 'EDIT', fontWeight: FontWeight.bold, color: black),
+                  text: 'EDIT',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: black,
+                ),
                 buildCustomText(
                   text: ' PROFILE',
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: green,
                 ),
@@ -53,7 +57,7 @@ class EditProfileScreen extends StatelessWidget {
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
                 children: [
                   Stack(
@@ -73,11 +77,17 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 4, bottom: 4),
-                        child: buildIconPlusAndMinus(
-                          onTap: () => controller.getImageProfile(),
-                          radius: 20,
-                          icon: Icons.camera_alt_rounded,
-                          size: 20,
+                        child: CircleAvatar(
+                          backgroundColor: btn.withOpacity(0.45),
+                          child: IconButton(
+                            onPressed: () => controller.getImageProfile(),
+                            splashRadius: 20,
+                            icon: buildIcon(
+                              icon: Icons.camera_alt_rounded,
+                              color: black,
+                              size: 20,
+                            ),
+                          ),
                         ),
                       ),
                     ],

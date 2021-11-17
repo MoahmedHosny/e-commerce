@@ -21,9 +21,11 @@ class AvailableSizes extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
             ),
             child: Center(
-              child: Text(
-                sizes![index].toString(),
-                style: GoogleFonts.merriweatherSans(),
+              child: buildCustomText(
+                text: sizes![index].toString(),
+                fontWeight: FontWeight.bold,
+                color: white,
+                alignment: Alignment.center,
               ),
             ),
           );

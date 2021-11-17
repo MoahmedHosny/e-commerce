@@ -23,7 +23,7 @@ Widget buildCustomButtonSocial({
           height: 25,
         ),
         const SizedBox(width: 60),
-        buildCustomText(text: text, fontSize: 16),
+        buildCustomText(text: text, fontSize: 14, fontWeight: FontWeight.bold),
       ],
     ),
   );

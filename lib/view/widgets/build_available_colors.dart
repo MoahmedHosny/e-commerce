@@ -11,6 +11,7 @@ class AvailableColors extends StatelessWidget {
       height: 30,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return CircleAvatar(
             radius: 16,

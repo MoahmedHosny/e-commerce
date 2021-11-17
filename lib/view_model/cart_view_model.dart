@@ -1,7 +1,6 @@
 import 'package:ecommerce/helpers/database_helper.dart';
 import 'package:ecommerce/model/cart_model.dart';
-import 'package:ecommerce/styles/colors/colors.dart';
-import 'package:ecommerce/view/widgets/snack_bar.dart';
+import 'package:ecommerce/view/widgets/build_snack_bar.dart';
 import 'package:get/get.dart';
 
 class CartViewModel extends GetxController {

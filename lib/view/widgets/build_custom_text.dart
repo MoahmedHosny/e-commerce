@@ -1,4 +1,6 @@
+import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget buildCustomText({
   required String text,
@@ -15,12 +17,12 @@ Widget buildCustomText({
     alignment: alignment ?? Alignment.centerLeft,
     child: Text(
       text,
-      overflow: overflow,
       maxLines: maxLines,
-      style: TextStyle(
+      overflow: overflow,
+      style: GoogleFonts.merriweatherSans(
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: color,
+        color: color ?? black,
         letterSpacing: letterSpacing,
         height: height,
       ),

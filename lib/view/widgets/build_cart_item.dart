@@ -16,7 +16,7 @@ Widget buildCartItem(BuildContext context, {required int index}) {
   return GetBuilder<CartViewModel>(
     init: CartViewModel(),
     builder: (controller) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SizedBox(
         height: size.height * 0.132,
         child: Row(
@@ -47,43 +47,53 @@ Widget buildCartItem(BuildContext context, {required int index}) {
                 children: [
                   buildCustomText(
                     text: controller.cartsList![index].title.toString(),
-                    fontSize: 17.5,
+                    fontSize: 17,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  const SizedBox(height: 8),
                   buildCustomText(
                     text: '\$ ${controller.cartsList![index].price}',
-                    fontSize: 16.5,
-                    letterSpacing: 0.2,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
                     color: green,
                   ),
                   const Spacer(),
-                  Row(
-                    children: [
-                      buildIconPlusAndMinus(
-                        onTap: () => controller.incrementQuantity(index),
-                      ),
-                      const SizedBox(width: 12.5),
-                      buildCustomText(
-                        text: controller.cartsList![index].quantity.toString(),
-                        fontSize: 18,
-                      ),
-                      const SizedBox(width: 12.5),
-                      buildIconPlusAndMinus(
-                        onTap: () {
-                          if (controller.cartsList![index].quantity <= 1) {
-                            controller.removeProductFromCart(
-                                id: controller.cartsList![index].id!,
-                                index: index);
-                          } else {
-                            controller.decrementQuantity(index);
-                          }
-                        },
-                        icon: Icons.remove,
-                      ),
-                    ],
+                  Container(
+                    height: size.height * 0.035,
+                    width: size.width * 0.25,
+                    decoration: BoxDecoration(
+                      color: btn.withOpacity(0.45),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildIconPlusAndMinus(
+                          onTap: () => controller.incrementQuantity(index),
+                          icon: Icons.add,
+                        ),
+                        buildCustomText(
+                          text:
+                              controller.cartsList![index].quantity.toString(),
+                          fontSize: 20,
+                        ),
+                        buildIconPlusAndMinus(
+                          onTap: () {
+                            if (controller.cartsList![index].quantity <= 1) {
+                              controller.removeProductFromCart(
+                                  id: controller.cartsList![index].id!,
+                                  index: index);
+                            } else {
+                              controller.decrementQuantity(index);
+                            }
+                          },
+                          icon: Icons.remove,
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

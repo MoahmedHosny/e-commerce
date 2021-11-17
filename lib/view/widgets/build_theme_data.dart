@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 ThemeData buildThemeData() {
   return ThemeData(
     scaffoldBackgroundColor: white,
-    fontFamily: 'jannah',
+    fontFamily: 'Lato',
     appBarTheme: const AppBarTheme(
       backgroundColor: white,
       elevation: 0,

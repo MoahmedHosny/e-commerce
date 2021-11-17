@@ -1,7 +1,7 @@
 import 'package:ecommerce/helpers/database_helper.dart';
 import 'package:ecommerce/model/favorite_model.dart';
 import 'package:ecommerce/styles/colors/colors.dart';
-import 'package:ecommerce/view/widgets/snack_bar.dart';
+import 'package:ecommerce/view/widgets/build_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -4,11 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/constants/constants.dart';
 import 'package:ecommerce/helpers/cache_helper.dart';
 import 'package:ecommerce/model/user_model.dart';
-import 'package:ecommerce/view/widgets/snack_bar.dart';
+import 'package:ecommerce/view/widgets/build_snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
@@ -45,16 +45,13 @@ class AuthViewModel extends GetxController {
   FacebookLogin facebookLogin = FacebookLogin();
   GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  late String name, email, password, phoneNumber, address;
-  ValueNotifier<bool> isLoading = ValueNotifier(false);
+
 
   /// Method User Login With Email And Password
-  void userLoginWithEmail() async {
+  void userLoginWithEmail({
+  required String email,
+  required String password,
+}) async {
     await auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((user) {
@@ -70,9 +67,9 @@ class AuthViewModel extends GetxController {
   /// Method Login With Facebook
   void userLoginWithFacebook() async {
     FacebookLoginResult facebookLoginResult =
-        await facebookLogin.logIn(['email']);
-    String accessToken = facebookLoginResult.accessToken.token;
-    if (facebookLoginResult.status == FacebookLoginStatus.loggedIn) {
+        await facebookLogin.logIn(customPermissions: ['email']);
+    String accessToken = facebookLoginResult.accessToken!.token;
+    if (facebookLoginResult.status == FacebookLoginStatus.success) {
       final facebookCredential = FacebookAuthProvider.credential(accessToken);
       await auth.signInWithCredential(facebookCredential).then((user) {
         createUserInFirestore(
@@ -115,7 +112,13 @@ class AuthViewModel extends GetxController {
   }
 
   /// Method Create New User
-  void createUserWithEmailAndPassword() async {
+  void createUserWithEmailAndPassword({
+  required String name,
+  required String email,
+  required String password,
+  required String phoneNumber,
+  required String address,
+}) async {
     await auth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((user) {
@@ -162,6 +165,7 @@ class AuthViewModel extends GetxController {
   }
 
   /// Method Get User Data From FireStore
+  ValueNotifier<bool> isLoading = ValueNotifier(false);
   UserDataModel? userDataModel;
   void getUserData() async {
     isLoading.value = true;
@@ -192,9 +196,6 @@ class AuthViewModel extends GetxController {
     );
   }
 
-  /// Text Editing Controller
-  void getTextEditingController() async {}
-
   /// Image Picker
   File? imageProfile;
   ImagePicker pickerImageProfile = ImagePicker();
@@ -211,11 +212,11 @@ class AuthViewModel extends GetxController {
 
   /// Update User Data
   void updateUserData({
-    required String? name,
-    required String? email,
-    required String? phoneNumber,
-    required String? address,
-  }) async {
+  required String name,
+  required String email,
+  required String phoneNumber,
+  required String address,
+}) async {
     if (imageProfile == null) {
       isLoading.value = true;
       update();

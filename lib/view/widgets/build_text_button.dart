@@ -10,7 +10,7 @@ Widget buildTextButton({
     onTap: onTap,
     child: buildCustomText(
       text: text,
-      fontSize: 15.5,
+      fontSize: 16,
       fontWeight: FontWeight.bold,
       color: blue,
     ),

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
-  HomeLayoutScreen({Key? key}) : super(key: key);
+  const HomeLayoutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,18 @@ class HomeLayoutScreen extends StatelessWidget {
           titleSpacing: 10,
           title: Row(
             children: [
-              buildCustomText(text: 'SHOP', color: black, letterSpacing: 0.5),
-              buildCustomText(text: 'PING', color: green, letterSpacing: 0.5),
+              buildCustomText(
+                text: 'SHOP',
+                fontWeight: FontWeight.bold,
+                color: black,
+                letterSpacing: 0.4,
+              ),
+              buildCustomText(
+                text: 'PING',
+                fontWeight: FontWeight.bold,
+                color: green,
+                letterSpacing: 0.4,
+              ),
             ],
           ),
         ),

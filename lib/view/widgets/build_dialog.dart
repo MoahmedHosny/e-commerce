@@ -20,10 +20,10 @@ void buildDialog(
             title: buildCustomText(text: 'Delete Product'),
             titlePadding:
                 const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            content: Text(
-              text,
-              style: GoogleFonts.lato(
-                  fontSize: 16, color: black.withOpacity(0.65)),
+            content: buildCustomText(
+              text: text,
+              fontSize: 16,
+              color: grey,
             ),
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 10, vertical: 6),

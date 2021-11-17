@@ -4,6 +4,8 @@ import 'package:ecommerce/layout/home_layout_screen.dart';
 import 'package:ecommerce/view/screens/Account/edit_profile_screen.dart';
 import 'package:ecommerce/view/screens/Auth/login_screen.dart';
 import 'package:ecommerce/view/screens/Auth/register_screen.dart';
+import 'package:ecommerce/view/screens/Check_Out/check_out_screen.dart';
+import 'package:ecommerce/view/screens/Home/all_products_screen.dart';
 import 'package:ecommerce/view/widgets/build_theme_data.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -20,7 +22,7 @@ void main() async {
   if (uid.isEmpty) {
     startWidget = LoginScreen();
   } else {
-    startWidget = HomeLayoutScreen();
+    startWidget = const HomeLayoutScreen();
   }
   runApp(MyApp(startWidget: startWidget));
 }
@@ -41,8 +43,15 @@ class MyApp extends StatelessWidget {
         GetPage(name: Login, page: () => LoginScreen()),
         GetPage(name: Register, page: () => RegisterScreen()),
         // GetPage(name: Controller, page: () => const ControllerScreen()),
-        GetPage(name: HomeLayout, page: () => HomeLayoutScreen()),
+
+        GetPage(name: HomeLayout, page: () => const HomeLayoutScreen()),
         GetPage(name: EditProfile, page: () => EditProfileScreen()),
+
+        GetPage(name: HomeLayout, page: () => const HomeLayoutScreen()),
+        GetPage(name: EditProfile, page: () => EditProfileScreen()),
+        GetPage(name: AllProducts, page: () => const AllProductsScreen()),
+        GetPage(name: CheckOut, page: () => const CheckOutScreen()),
+
       ],
     );
   }

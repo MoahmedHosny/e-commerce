@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AccountScreen extends StatelessWidget {
-  AccountScreen({Key? key}) : super(key: key);
+  const AccountScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class AccountScreen extends StatelessWidget {
           : Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     children: [
                       CircleAvatar(
@@ -46,22 +46,22 @@ class AccountScreen extends StatelessWidget {
                           children: [
                             buildCustomText(
                               text: controller.userDataModel!.name.toString(),
-                              fontSize: 18,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
+                            const SizedBox(height: 4),
                             buildCustomText(
                               text: controller.userDataModel!.email
                                           .toString() ==
                                       null.toString()
                                   ? 'There is no email ...'
                                   : controller.userDataModel!.email.toString(),
-                              color: black.withOpacity(0.35),
-                              fontSize: 17,
+                              color: grey,
+                              fontSize: 16,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              height: 1.6,
-                              letterSpacing: 0.2,
                             ),
                           ],
                         ),

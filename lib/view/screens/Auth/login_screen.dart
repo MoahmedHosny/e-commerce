@@ -14,10 +14,11 @@ import 'package:flutter/rendering.dart';
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   LoginScreen({Key? key}) : super(key: key);
-
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  String? email, password;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,29 +60,30 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 8),
                           buildCustomText(
                             text: 'Sign in to Continue',
                             fontSize: 14,
-                            color: black.withOpacity(0.5),
+                            color: grey,
                           ),
                           const SizedBox(height: 30),
                           buildCustomTextField(
                             hintText: 'E-mail',
-                            controller: controller.emailController,
+                            controller: emailController,
                             type: TextInputType.emailAddress,
                             onChanged: (value) {
-                              controller.email = value!;
+                              email = value!;
                             },
                             onSaved: (value) {
-                              controller.email = value!;
+                              email = value!;
                             },
                             validator: (value) {
                               if (value == null ||
                                   value == '' ||
                                   value.isEmpty) {
-                                return 'Please Enter Your E-mail';
+                                return 'Please enter your e-mail';
                               } else if (!value.contains('@')) {
-                                return 'Do Use The @ Char.';
+                                return 'Do use the @ char.';
                               } else {
                                 return null;
                               }
@@ -91,21 +93,21 @@ class LoginScreen extends StatelessWidget {
                           buildCustomTextField(
                             hintText: 'Password',
                             isPassword: true,
-                            controller: controller.passwordController,
+                            controller: passwordController,
                             type: TextInputType.visiblePassword,
                             onChanged: (value) {
-                              controller.password = value!;
+                              password = value!;
                             },
                             onSaved: (value) {
-                              controller.password = value!;
+                              password = value!;
                             },
                             validator: (value) {
                               if (value == null ||
                                   value == '' ||
                                   value.isEmpty) {
-                                return 'Please Enter Your Password';
+                                return 'Please enter your password';
                               } else if (value.length < 8) {
-                                return 'Enter a Password 8+ Char.';
+                                return 'Enter a password 8+ char.';
                               } else {
                                 return null;
                               }
@@ -113,10 +115,10 @@ class LoginScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 15),
                           buildCustomText(
-                            text: 'Forgot Password?',
+                            text: 'Forgot Password ?',
                             alignment: Alignment.centerRight,
                             fontSize: 16,
-                            color: black.withOpacity(0.5),
+                            color: grey,
                           ),
                           const SizedBox(height: 30),
                           buildCustomButton(
@@ -126,7 +128,10 @@ class LoginScreen extends StatelessWidget {
                               if (!formKey.currentState!.validate()) {
                               } else {
                                 (formKey.currentState!.save());
-                                controller.userLoginWithEmail();
+                                controller.userLoginWithEmail(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
                               }
                             },
                           ),

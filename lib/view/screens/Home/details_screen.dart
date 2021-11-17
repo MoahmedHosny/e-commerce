@@ -6,7 +6,6 @@ import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:ecommerce/view/widgets/build_available_colors.dart';
 import 'package:ecommerce/view/widgets/build_available_sizes.dart';
 import 'package:ecommerce/view/widgets/build_custom_container.dart';
-import 'package:ecommerce/view/widgets/build_category_circular.dart';
 import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:ecommerce/view/widgets/build_custom_text_button.dart';
 import 'package:ecommerce/view/widgets/build_icon.dart';
@@ -15,11 +14,10 @@ import 'package:ecommerce/view_model/favorite_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DetailsScreen extends StatelessWidget {
-  DetailsScreen({Key? key, required this.productModel}) : super(key: key);
-  ProductModel productModel;
+  const DetailsScreen({Key? key, required this.productModel}) : super(key: key);
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +71,20 @@ class DetailsScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: buildCategoryCircular(
+                              child: Container(
                                 height: 50,
                                 width: 50,
+                                decoration: BoxDecoration(
+                                  color: white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: grey.withOpacity(0.25),
+                                      blurRadius: 20,
+                                      offset: const Offset(0, 10),
+                                    ),
+                                  ],
+                                ),
                                 child: Image.asset(
                                   'assets/images/icons/wishlist.png',
                                   scale: 1.8,
@@ -95,31 +104,37 @@ class DetailsScreen extends StatelessWidget {
                       children: [
                         buildCustomText(
                           text: productModel.title.toString(),
-                          fontSize: 20,
-                          height: 1.4,
+                          fontSize: 18,
                         ),
                         const SizedBox(height: 20),
                         if (productModel.sizes != null)
-                          const CustomContainer(text: 'Size'),
+                          buildCustomText(
+                            text: 'Size',
+                            fontSize: 20,
+                          ),
                         if (productModel.sizes != null)
                           const SizedBox(height: 10),
                         if (productModel.sizes != null)
                           AvailableSizes(sizes: productModel.sizes),
                         const SizedBox(height: 15),
-                        const CustomContainer(text: 'Color'),
+
+
+                        buildCustomText(
+                          text: 'Color',
+                          fontSize: 20,
+                        ),
                         const SizedBox(height: 10),
                         AvailableColors(colors: productModel.colors),
                         const SizedBox(height: 20),
-                        buildCustomText(
-                            text: 'Details', fontSize: 20, letterSpacing: 1),
+                        buildCustomText(text: 'Details', fontSize: 20),
                         const SizedBox(height: 10),
-                        Text(
-                          productModel.description.toString().toLowerCase(),
-                          style: GoogleFonts.lato(
-                            fontSize: 18,
-                            color: black.withOpacity(0.65),
-                            height: 1.55,
-                          ),
+                        buildCustomText(
+                          text:
+                              productModel.description.toString().toLowerCase(),
+                          fontSize: 17,
+
+                          color: grey.withOpacity(0.8),
+                          height: 1.5,
                         ),
                       ],
                     ),

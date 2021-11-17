@@ -1,5 +1,5 @@
+import 'package:ecommerce/constants/constants.dart';
 import 'package:ecommerce/view/widgets/build_cart_item.dart';
-import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:ecommerce/view/widgets/build_custom_text_button.dart';
 import 'package:ecommerce/view_model/cart_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,10 +15,12 @@ class CartScreen extends StatelessWidget {
         init: CartViewModel(),
         builder: (controller) {
           if (controller.cartsList!.isEmpty) {
-            return buildCustomText(
-              text: 'Cart Empty . .',
-              fontSize: 30,
-              alignment: Alignment.center,
+            return Center(
+              child: Image.asset(
+                'assets/images/empty_cart.jpg',
+                height: MediaQuery.of(context).size.height * 0.26,
+                width: MediaQuery.of(context).size.width,
+              ),
             );
           } else {
             return Column(
@@ -40,7 +42,7 @@ class CartScreen extends StatelessWidget {
                     text: 'total',
                     price: controller.isTotalPrice.toString(),
                     textButton: 'checkout',
-                    onPressed: () {},
+                    onPressed: () => Get.toNamed(CheckOut),
                   ),
               ],
             );

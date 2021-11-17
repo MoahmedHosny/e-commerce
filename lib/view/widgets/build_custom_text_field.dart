@@ -5,16 +5,18 @@ import 'package:flutter/material.dart';
 Widget buildCustomTextField({
   String? hintText,
   String? labelText,
-  required TextEditingController controller,
-  required TextInputType type,
-  required Function(String? value) onChanged,
-  required Function(String? value) onSaved,
+  TextEditingController? controller,
+  TextInputType? type,
+  Function(String? value)? onChanged,
+  Function(String? value)? onSaved,
   FormFieldValidator? validator,
   InputBorder? border,
   bool? isPassword = false,
 }) {
   return TextFormField(
-    style: const TextStyle(fontSize: 16.75, height: 1.6, letterSpacing: 0.25),
+    style: GoogleFonts.merriweatherSans(
+      color: black,
+    ),
     cursorColor: black,
     controller: controller,
     keyboardType: type,
@@ -27,9 +29,8 @@ Widget buildCustomTextField({
       labelText: labelText,
       labelStyle: const TextStyle(color: green),
       border: border,
-      hintStyle: GoogleFonts.lato(
-        fontSize: 16,
-        color: black.withOpacity(0.6),
+      hintStyle: GoogleFonts.merriweatherSans(
+        color: grey,
       ),
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(

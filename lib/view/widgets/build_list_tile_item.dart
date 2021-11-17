@@ -1,7 +1,5 @@
 import 'package:ecommerce/view/widgets/build_custom_text.dart';
-import 'package:ecommerce/view/widgets/build_image_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 Widget buildListTileItem({
   required String image,
@@ -10,7 +8,7 @@ Widget buildListTileItem({
   Widget? trailing,
 }) {
   return ListTile(
-    contentPadding: const EdgeInsets.symmetric(horizontal: 14),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
     leading: Container(
       height: 40,
       width: 40,
@@ -18,16 +16,16 @@ Widget buildListTileItem({
         color: const Color(0xFF70FFBD).withOpacity(0.12),
         borderRadius: BorderRadius.circular(4),
       ),
-      child: buildImageIcons(image: image),
+      child: Image.asset(
+        image,
+        scale: 2.2,
+      ),
     ),
-    title: Text(
-      text,
-      style: GoogleFonts.lato(fontSize: 16.88, fontWeight: FontWeight.bold),
-    ),
+    title: buildCustomText(text: text , ),
     trailing: trailing ??
         Image.asset(
           'assets/images/icons/arrow.png',
-          scale: 1.7,
+          scale: 1.75,
         ),
     onTap: onTap,
   );

@@ -8,30 +8,42 @@ import 'package:get/get.dart';
 class ControllerViewModel extends GetxController {
   int currentIndex = 0;
   List<Widget> screens = [
-    HomeScreen(),
+    const HomeScreen(),
     const CartScreen(),
     const FavoriteScreen(),
-    AccountScreen(),
+    const AccountScreen(),
   ];
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(
       icon: Image.asset('assets/images/icons/explore.png', scale: 2.0),
-      activeIcon: const Text('Explore'),
+      activeIcon: const Text(
+        'Explore',
+        style: TextStyle(fontFamily: 'Jannah'),
+      ),
       label: '',
     ),
     BottomNavigationBarItem(
       icon: Image.asset('assets/images/icons/cart.png', scale: 2.0),
-      activeIcon: const Text('Cart'),
+      activeIcon: const Text(
+        'Cart',
+        style: TextStyle(fontFamily: 'Jannah'),
+      ),
       label: '',
     ),
     BottomNavigationBarItem(
       icon: Image.asset('assets/images/icons/wishlist.png', scale: 2.0),
-      activeIcon: const Text('Favorite'),
+      activeIcon: const Text(
+        'Favorite',
+        style: TextStyle(fontFamily: 'Jannah'),
+      ),
       label: '',
     ),
     BottomNavigationBarItem(
       icon: Image.asset('assets/images/icons/user.png', scale: 2.0),
-      activeIcon: const Text('Account'),
+      activeIcon: const Text(
+        'Account',
+        style: TextStyle(fontFamily: 'Jannah'),
+      ),
       label: '',
     ),
   ];
