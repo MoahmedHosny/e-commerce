@@ -69,10 +69,10 @@ Widget buildFavoriteItem(BuildContext context, {required int index}) {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        buildTextButton(text: 'NO', onTap: () => Get.back()),
+                        buildTextButton(text: 'CANCEL', onTap: () => Get.back()),
                         const SizedBox(width: 30),
                         buildTextButton(
-                          text: 'YES',
+                          text: 'DELETE',
                           onTap: () {
                             Get.back();
                             controller.removeProductFromFav(

@@ -84,8 +84,8 @@ class AccountScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 buildListTileItem(
                   image: 'assets/images/icons/history.png',
-                  text: 'History',
-                  onTap: () {},
+                  text: 'Order History',
+                  onTap: () => Get.toNamed(OrderHistory),
                 ),
                 const SizedBox(height: 10),
                 buildListTileItem(

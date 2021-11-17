@@ -27,6 +27,7 @@ class FavoriteViewModel extends GetxController {
         return buildSnackBar(
           title: 'Check Your Favorite',
           msg: '${favoriteModel.title} is already added in favorite',
+          color: red,
         );
       }
     }
@@ -48,6 +49,7 @@ class FavoriteViewModel extends GetxController {
     buildSnackBar(
       title: 'Item Removed',
       msg: '${favList![index].title} was removed to your favorite',
+      color: red,
     );
     favList!.removeAt(index);
     update();

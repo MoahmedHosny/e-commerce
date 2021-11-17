@@ -12,7 +12,7 @@ class FavoriteModel {
     this.price,
   });
 
-  FavoriteModel.formJson(Map<String, dynamic> json) {
+  FavoriteModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     productId = json['productId'];
     image = json['image'];

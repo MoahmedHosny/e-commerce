@@ -12,6 +12,7 @@ Widget buildCustomTextField({
   FormFieldValidator? validator,
   InputBorder? border,
   bool? isPassword = false,
+  Color? color,
 }) {
   return TextFormField(
     style: GoogleFonts.merriweatherSans(
@@ -27,7 +28,7 @@ Widget buildCustomTextField({
     decoration: InputDecoration(
       hintText: hintText,
       labelText: labelText,
-      labelStyle: const TextStyle(color: green),
+      labelStyle:  TextStyle(color: color ?? green),
       border: border,
       hintStyle: GoogleFonts.merriweatherSans(
         color: grey,

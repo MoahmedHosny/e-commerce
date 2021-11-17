@@ -10,6 +10,7 @@ class ProductModel {
   String? description;
   List<dynamic>? sizes;
   List<dynamic>? colors;
+  String? categoryName;
 
   ProductModel({
     this.productId,
@@ -20,8 +21,9 @@ class ProductModel {
     this.description,
     this.sizes,
     this.colors,
+    this.categoryName,
   });
-  ProductModel.formJson(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     productId = json['productId'];
     image = json['image'];
     title = json['title'];
@@ -30,6 +32,7 @@ class ProductModel {
     description = json['description'];
     sizes = json['sizes'];
     colors = json['colors'];
+    categoryName = json['categoryName'];
   }
   Map<String, dynamic> toMap() {
     return {
@@ -41,6 +44,7 @@ class ProductModel {
       'description': description,
       'sizes': sizes,
       'colors': colors,
+      'categoryName': categoryName,
     };
   }
 }

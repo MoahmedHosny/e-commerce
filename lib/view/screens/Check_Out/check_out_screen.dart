@@ -20,6 +20,7 @@ class CheckOutScreen extends StatelessWidget {
     return GetBuilder<CheckOutViewModel>(
       init: CheckOutViewModel(),
       builder: (controller) => Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           titleSpacing: 0,
           leading: IconButton(

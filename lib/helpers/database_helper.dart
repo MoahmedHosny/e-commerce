@@ -59,7 +59,7 @@ class DbHelper {
     Database? dbCart = await database;
     List<Map<String, dynamic>> data = await dbCart!.query(tableCart);
     if (data.isNotEmpty) {
-      return data.map((item) => CartModel.formJson(item)).toList();
+      return data.map((item) => CartModel.fromJson(item)).toList();
     } else {
       return [];
     }
@@ -87,7 +87,7 @@ class DbHelper {
     Database? dbClient = await database;
     List<Map<String, dynamic>> data = await dbClient!.query(tableFavorite);
     if (data.isNotEmpty) {
-      return data.map((item) => FavoriteModel.formJson(item)).toList();
+      return data.map((item) => FavoriteModel.fromJson(item)).toList();
     } else {
       return [];
     }

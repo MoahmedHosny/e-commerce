@@ -7,6 +7,12 @@ const HomeLayout = '/HomeLayout';
 const AllProducts = '/AllProducts';
 const EditProfile = '/EditProfile';
 const CheckOut = '/CheckOut';
+const OrderHistory = '/OrderHistory';
+const Men = '/CategoryMen';
+const Women = '/CategoryWomen';
+const Gadgets = '/CategoryGadgets';
+const Devices = '/CategoryDevices';
+const Gaming = '/CategoryGaming';
 
 /// Local Database
 const String tableCart = 'Cart';

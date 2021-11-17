@@ -11,9 +11,10 @@ Widget buildProductItem(BuildContext context, ProductModel productModel) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      SizedBox(
+      Container(
         height: size.height * 0.30,
         width: size.width,
+        color: btn.withOpacity(0.16),
         child: CachedNetworkImage(
           imageUrl: productModel.image.toString(),
           imageBuilder: (context, imageProvider) => Container(

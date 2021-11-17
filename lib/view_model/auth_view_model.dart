@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/constants/constants.dart';
 import 'package:ecommerce/helpers/cache_helper.dart';
 import 'package:ecommerce/model/user_model.dart';
+import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:ecommerce/view/widgets/build_snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -45,13 +46,11 @@ class AuthViewModel extends GetxController {
   FacebookLogin facebookLogin = FacebookLogin();
   GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
 
-
-
   /// Method User Login With Email And Password
   void userLoginWithEmail({
-  required String email,
-  required String password,
-}) async {
+    required String email,
+    required String password,
+  }) async {
     await auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((user) {
@@ -60,7 +59,11 @@ class AuthViewModel extends GetxController {
       Get.offAllNamed(HomeLayout);
       buildSuccessSnackBar();
     }).catchError((error) {
-      buildSnackBar(title: 'Error Login Account', msg: error.toString());
+      buildSnackBar(
+        title: 'Error Login Account',
+        msg: error.toString(),
+        color: red,
+      );
     });
   }
 
@@ -82,7 +85,11 @@ class AuthViewModel extends GetxController {
         Get.offAllNamed(HomeLayout);
         buildSuccessSnackBar();
       }).catchError((error) {
-        buildSnackBar(title: 'Error Login Account', msg: error.toString());
+        buildSnackBar(
+          title: 'Error Login Account',
+          msg: error.toString(),
+          color: red,
+        );
       });
     }
   }
@@ -107,18 +114,22 @@ class AuthViewModel extends GetxController {
       Get.offAllNamed(HomeLayout);
       buildSuccessSnackBar();
     }).catchError((error) {
-      buildSnackBar(title: 'Error Login Account', msg: error.toString());
+      buildSnackBar(
+        title: 'Error Login Account',
+        msg: error.toString(),
+        color: red,
+      );
     });
   }
 
   /// Method Create New User
   void createUserWithEmailAndPassword({
-  required String name,
-  required String email,
-  required String password,
-  required String phoneNumber,
-  required String address,
-}) async {
+    required String name,
+    required String email,
+    required String password,
+    required String phoneNumber,
+    required String address,
+  }) async {
     await auth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((user) {
@@ -129,10 +140,14 @@ class AuthViewModel extends GetxController {
         phoneNumber: phoneNumber,
       );
       CacheHelper.setData(key: 'uid', value: user.user!.uid);
-      Get.offAllNamed(HomeLayout);
+      Get.offAllNamed(Login);
       buildSuccessSnackBar();
     }).catchError((error) {
-      buildSnackBar(title: 'Error Login Account', msg: error.toString());
+      buildSnackBar(
+        title: 'Error Login Account',
+        msg: error.toString(),
+        color: red,
+      );
     });
   }
 
@@ -212,11 +227,11 @@ class AuthViewModel extends GetxController {
 
   /// Update User Data
   void updateUserData({
-  required String name,
-  required String email,
-  required String phoneNumber,
-  required String address,
-}) async {
+    required String name,
+    required String email,
+    required String phoneNumber,
+    required String address,
+  }) async {
     if (imageProfile == null) {
       isLoading.value = true;
       update();
@@ -233,6 +248,7 @@ class AuthViewModel extends GetxController {
           .doc(auth.currentUser!.uid)
           .update(userModel.toMap())
           .then((data) {
+        auth.currentUser!.updateEmail(email);
         getUserData();
         Get.back();
         buildSnackBar(
@@ -262,8 +278,11 @@ class AuthViewModel extends GetxController {
           FirebaseFirestore.instance
               .collection('Users')
               .doc(auth.currentUser!.uid)
-              .update(userModel.toMap());
-          getUserData();
+              .update(userModel.toMap())
+              .then((data) {
+            auth.currentUser!.updateEmail(email);
+            getUserData();
+          });
           Get.back();
           buildSnackBar(
             title: 'Success Updated',
@@ -272,7 +291,7 @@ class AuthViewModel extends GetxController {
           isLoading.value = false;
           update();
           imageProfile = null;
-        }).catchError((error) {});
+        });
       }).catchError((error) {
         print('The error ---> ' + error.toString());
       });

@@ -5,7 +5,6 @@ import 'package:ecommerce/model/product_model.dart';
 import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:ecommerce/view/widgets/build_available_colors.dart';
 import 'package:ecommerce/view/widgets/build_available_sizes.dart';
-import 'package:ecommerce/view/widgets/build_custom_container.dart';
 import 'package:ecommerce/view/widgets/build_custom_text.dart';
 import 'package:ecommerce/view/widgets/build_custom_text_button.dart';
 import 'package:ecommerce/view/widgets/build_icon.dart';
@@ -88,7 +87,6 @@ class DetailsScreen extends StatelessWidget {
                                 child: Image.asset(
                                   'assets/images/icons/wishlist.png',
                                   scale: 1.8,
-                                  color: yellow,
                                 ),
                               ),
                             ),
@@ -117,8 +115,6 @@ class DetailsScreen extends StatelessWidget {
                         if (productModel.sizes != null)
                           AvailableSizes(sizes: productModel.sizes),
                         const SizedBox(height: 15),
-
-
                         buildCustomText(
                           text: 'Color',
                           fontSize: 20,
@@ -132,7 +128,6 @@ class DetailsScreen extends StatelessWidget {
                           text:
                               productModel.description.toString().toLowerCase(),
                           fontSize: 17,
-
                           color: grey.withOpacity(0.8),
                           height: 1.5,
                         ),

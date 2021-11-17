@@ -107,10 +107,10 @@ Widget buildCartItem(BuildContext context, {required int index}) {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         buildTextButton(
-                            text: 'Cancel', onTap: () => Get.back()),
+                            text: 'CANCEL', onTap: () => Get.back()),
                         const SizedBox(width: 20),
                         buildTextButton(
-                          text: 'Confirm',
+                          text: 'DELETE',
                           onTap: () {
                             Get.back();
                             controller.removeProductFromCart(

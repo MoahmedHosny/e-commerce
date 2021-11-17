@@ -12,7 +12,7 @@ class AddAddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CheckOutViewModel>(
-      init: Get.find<CheckOutViewModel>(),
+      init: CheckOutViewModel(),
       builder: (controller) => Form(
         key: controller.formKey,
         child: Expanded(
@@ -22,34 +22,48 @@ class AddAddressScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  const SizedBox(height: 60),
-                  buildItem(
-                    text: 'Street 1',
+                  const SizedBox(height: 40),
+                  Row(
+                    children: [
+                      Image.asset('assets/images/check.png', scale: 2.2),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: buildCustomText(
+                          text:
+                              'Billing address is the same as delivery address',
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  buildTextField(
+                    labelText: 'Street 1',
                     controller: controller.street1Controller,
                   ),
                   const SizedBox(height: 15),
-                  buildItem(
-                    text: 'Street 2',
+                  buildTextField(
+                    labelText: 'Street 2',
                     controller: controller.street2Controller,
                   ),
                   const SizedBox(height: 15),
-                  buildItem(
-                    text: 'City',
+                  buildTextField(
+                    labelText: 'City',
                     controller: controller.cityController,
                   ),
                   const SizedBox(height: 15),
                   Row(
                     children: [
                       Expanded(
-                        child: buildItem(
-                          text: 'State',
+                        child: buildTextField(
+                          labelText: 'State',
                           controller: controller.stateController,
                         ),
                       ),
                       const SizedBox(width: 20),
                       Expanded(
-                        child: buildItem(
-                          text: 'Country',
+                        child: buildTextField(
+                          labelText: 'Country',
                           controller: controller.countryController,
                         ),
                       ),
@@ -64,24 +78,20 @@ class AddAddressScreen extends StatelessWidget {
     );
   }
 
-  Widget buildItem({
-    String? text,
-    String? initialValue,
+  Widget buildTextField({
+    String? labelText,
     TextEditingController? controller,
   }) {
-    return Column(
-      children: [
-        buildCustomText(text: text!, fontSize: 16, color: grey),
-        buildCustomTextField(
-          controller: controller,
-          type: TextInputType.text,
-          validator: (val) {
-            if (val.isEmpty) {
-              return 'This field can\'t be empty';
-            }
-          },
-        ),
-      ],
+    return buildCustomTextField(
+      labelText: labelText,
+      controller: controller,
+      type: TextInputType.text,
+      color: grey,
+      validator: (val) {
+        if (val.isEmpty) {
+          return 'This field can\'t be empty';
+        }
+      },
     );
   }
 }

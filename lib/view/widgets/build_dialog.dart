@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 void buildDialog(
   BuildContext context, {
+  String? title,
   required String text,
   required List<Widget> actions,
 }) {
@@ -17,7 +18,7 @@ void buildDialog(
         children: [
           AlertDialog(
             title: buildCustomText(
-              text: 'Delete Product',
+              text: title ?? 'Delete Product',
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -29,6 +30,7 @@ void buildDialog(
             ),
             contentPadding: const EdgeInsets.all(10),
             actions: actions,
+            actionsPadding: const EdgeInsets.only(bottom: 4),
           ),
         ],
       );

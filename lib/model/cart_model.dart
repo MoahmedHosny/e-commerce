@@ -15,7 +15,7 @@ class CartModel {
     this.price,
   });
 
-  CartModel.formJson(Map<String, dynamic> json) {
+  CartModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     productId = json['productId'];
     image = json['image'];

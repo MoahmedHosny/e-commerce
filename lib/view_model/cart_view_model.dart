@@ -1,5 +1,6 @@
 import 'package:ecommerce/helpers/database_helper.dart';
 import 'package:ecommerce/model/cart_model.dart';
+import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:ecommerce/view/widgets/build_snack_bar.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +30,7 @@ class CartViewModel extends GetxController {
         return buildSnackBar(
           title: 'Check Your Cart',
           msg: '${cartModel.title} is already added in cart',
+          color: red,
         );
       }
     }
@@ -78,6 +80,7 @@ class CartViewModel extends GetxController {
     buildSnackBar(
       title: 'Item Removed',
       msg: '${cartsList![index].title} was removed to your cart',
+      color: red,
     );
     cartsList!.removeAt(index);
     update();

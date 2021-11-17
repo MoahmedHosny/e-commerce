@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/constants/constants.dart';
+import 'package:ecommerce/helpers/database_helper.dart';
 import 'package:ecommerce/model/order_model.dart';
 import 'package:ecommerce/styles/colors/colors.dart';
 import 'package:ecommerce/view/widgets/build_snack_bar.dart';
@@ -18,8 +19,11 @@ class CheckOutViewModel extends GetxController {
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController countryController = TextEditingController();
-  CartViewModel cartViewModel = Get.find<CartViewModel>();
+  CartViewModel cartViewModel = CartViewModel();
 
+  CheckOutViewModel() {
+    getAllOrders();
+  }
   Color getColor(int i) {
     if (i == index) {
       return black;
@@ -57,6 +61,8 @@ class CheckOutViewModel extends GetxController {
           isTotalPrice: cartViewModel.isTotalPrice,
           products: cartViewModel.cartsList,
           time: DateTime.now().toString(),
+          deliveryTime: value,
+          deliveryType: 'In Transit',
         );
         FirebaseFirestore.instance
             .collection('Users')
@@ -64,13 +70,16 @@ class CheckOutViewModel extends GetxController {
             .collection('Orders')
             .doc(id)
             .set(orderModel.toMap());
-        cartViewModel.cartsList = [];
         buildSnackBar(
             title: 'Item Added', msg: 'The order has been successfully added');
         pages = Pages.Summary;
         index = i;
       }
     } else if (i == 3) {
+      for (var item in cartViewModel.cartsList!) {
+        DbHelper.db.deleteCartDb(item.id!);
+      }
+      cartViewModel.cartsList!.length = 0;
       Get.offNamedUntil(HomeLayout, (route) => false);
       pages = Pages.DeliveryTime;
       index = 0;
@@ -90,4 +99,40 @@ class CheckOutViewModel extends GetxController {
     'Address',
     'Summer',
   ];
+  List<OrderModel> orders = [];
+  Future<void> getAllOrders() async {
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('Orders')
+        .get()
+        .then((data) {
+      for (int i = 0; i < data.docs.length; i++) {
+        orders.add(OrderModel.fromJson(data.docs[i].data()));
+      }
+      update();
+    }).catchError((error) {
+      print('error ---> ' + error.toString());
+    });
+  }
+
+  Future<void> deleteOrder(OrderModel orderModel, int index) async {
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('Orders')
+        .doc(orderModel.orderId)
+        .delete()
+        .then((value) {
+      buildSnackBar(
+        title: 'Item Remove',
+        msg: 'The order has been successfully removed',
+        color: red,
+      );
+      orders.removeAt(index);
+      update();
+    }).catchError((error) {
+      print('error ---> ' + error.toString());
+    });
+  }
 }

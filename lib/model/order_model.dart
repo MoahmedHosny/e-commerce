@@ -1,9 +1,17 @@
 import 'package:ecommerce/model/cart_model.dart';
 
 class OrderModel {
-  String? street1, street2, city, state, country, orderId, time;
+  String? street1;
+  String? street2;
+  String? city;
+  String? state;
+  String? country;
+  String? orderId;
+  String? time;
+  String? deliveryTime;
+  String? deliveryType;
   double? isTotalPrice;
-  List<CartModel>? products;
+  List<CartModel>? products = [];
 
   OrderModel({
     this.street1,
@@ -12,6 +20,8 @@ class OrderModel {
     this.state,
     this.country,
     this.time,
+    this.deliveryTime,
+    this.deliveryType,
     this.orderId,
     this.isTotalPrice,
     this.products,
@@ -23,12 +33,13 @@ class OrderModel {
     state = json['state'];
     country = json['country'];
     time = json['time'];
+    deliveryTime = json['deliveryTime'];
+    deliveryType = json['deliveryType'];
     orderId = json['orderId'];
     isTotalPrice = json['isTotalPrice'];
-    // ignore: avoid_function_literals_in_foreach_calls
-    products!.forEach((element) {
-      json['products'].add(element.title);
-    });
+    for (var item in products!) {
+      json['products'].add(item.title);
+    }
   }
   Map<String, dynamic> toMap() {
     return {
@@ -38,6 +49,8 @@ class OrderModel {
       'state': state,
       'country': country,
       'time': time,
+      'deliveryTime': deliveryTime,
+      'deliveryType': deliveryType,
       'orderId': orderId,
       'isTotalPrice': isTotalPrice,
       'products': products!.map((item) => item.toMap()).toList(),

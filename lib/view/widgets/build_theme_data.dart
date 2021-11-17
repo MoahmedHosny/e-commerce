@@ -14,7 +14,6 @@ ThemeData buildThemeData() {
       ),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: transparent,
-        statusBarIconBrightness: Brightness.dark,
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

@@ -14,7 +14,7 @@ class DeliveryTimeScreen extends StatelessWidget {
       builder: (controller) => Expanded(
         child: Column(
           children: [
-            const SizedBox(height: 60),
+            const SizedBox(height: 40),
             RadioListTile(
               value: (radios[0].title.toString()),
               groupValue: controller.value,
